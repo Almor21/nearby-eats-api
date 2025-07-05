@@ -1,4 +1,4 @@
-import { User } from "./user.entitie";
+import { User } from "./user.entity";
 
 const entities = [User];
 
