@@ -47,6 +47,7 @@ describe('LogInterceptor', () => {
       body: { password: '1234', email: 'test@example.com' },
       response: { success: true },
       statusCode: 200,
+      userId: null
     });
   });
 
@@ -103,6 +104,7 @@ describe('LogInterceptor', () => {
       body: { password: '[REDACTED]', email: 'test@example.com' },
       response: { token: '[REDACTED]', user: 'user1' },
       statusCode: 201,
+      userId: null
     });
   });
 });

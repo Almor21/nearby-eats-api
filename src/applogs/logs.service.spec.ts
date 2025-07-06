@@ -30,6 +30,7 @@ describe('LogsService', () => {
       const logs: Log[] = [
         {
           id: 'uuid-1',
+          userId: 'user-1',
           route: '/api/example',
           body: { foo: 'bar' },
           response: { ok: true },
