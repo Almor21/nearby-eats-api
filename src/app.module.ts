@@ -29,8 +29,8 @@ import { SchedulerModule } from './scheduler/scheduler.module';
     }),
     ThrottlerModule.forRoot([
       {
-        ttl: 60,
-        limit: 30,
+        ttl: parseInt(process.env.THROTTLE_TTL || '60'),
+        limit: parseInt(process.env.THROTTLE_LIMIT || '10'),
       },
     ]),
   ],
