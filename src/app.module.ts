@@ -12,6 +12,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { LogInterceptor } from './interceptors/log-interceptor.interceptor';
 import { LogsModule } from './applogs/logs.module';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { SchedulerModule } from './scheduler/scheduler.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
     IntegratorModule,
     PlacesModule,
     LogsModule,
+    SchedulerModule,
     ScheduleModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,
