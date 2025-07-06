@@ -11,6 +11,7 @@ import { PlacesModule } from './places/places.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { LogInterceptor } from './interceptors/log-interceptor.interceptor';
 import { LogsModule } from './applogs/logs.module';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
@@ -24,6 +25,12 @@ import { LogsModule } from './applogs/logs.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60,
+        limit: 30,
+      },
+    ]),
   ],
   providers: [
     JwtStrategy,
@@ -44,6 +51,10 @@ import { LogsModule } from './applogs/logs.module';
           enableImplicitConversion: true,
         },
       }),
+    },
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
     },
   ],
 })
