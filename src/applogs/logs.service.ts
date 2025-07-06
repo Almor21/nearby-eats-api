@@ -14,6 +14,10 @@ export class LogsService {
     return await this.logRepository.find();
   }
 
+  async getLogByUserId(id: string) {
+    return await this.logRepository.find({ where: { userId: id } });
+  }
+
   async createLog(logData: Partial<Log>) {
     const log = this.logRepository.create(logData);
     return await this.logRepository.save(log);

@@ -14,6 +14,11 @@ export class CreateLogsTable1751782691599 implements MigrationInterface {
             isNullable: false,
           },
           {
+            name: 'userId',
+            type: 'uuid',
+            isNullable: true,
+          },
+          {
             name: 'route',
             type: 'varchar',
             isNullable: false,

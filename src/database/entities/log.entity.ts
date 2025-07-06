@@ -10,6 +10,9 @@ export class Log {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column({ type: 'uuid', nullable: true })
+  userId: string;
+
   @Column()
   route: string;
 

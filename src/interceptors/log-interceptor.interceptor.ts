@@ -51,6 +51,7 @@ export class LogInterceptor implements NestInterceptor {
         }
 
         const logData = {
+          userId: request.user ? request.user.id : null,
           route: request.url,
           method: request.method,
           body: requestData,
