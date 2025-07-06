@@ -10,6 +10,7 @@ import { IntegratorModule } from './integrator/integrator.module';
 import { PlacesModule } from './places/places.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { LogInterceptor } from './interceptors/log-interceptor.interceptor';
+import { LogsModule } from './applogs/logs.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { LogInterceptor } from './interceptors/log-interceptor.interceptor';
     DatabaseModule,
     IntegratorModule,
     PlacesModule,
+    LogsModule,
     ScheduleModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,
