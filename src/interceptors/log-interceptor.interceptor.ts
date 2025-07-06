@@ -5,13 +5,10 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { InjectRepository } from '@nestjs/typeorm';
 import { tap } from 'rxjs';
 import { LogsService } from 'src/applogs/logs.service';
-import { Log } from 'src/database/entities/log.entity';
 import { NO_LOG_KEY } from 'src/decorators/nolog.decorator';
 import { SKIP_LOG_FIELDS } from 'src/decorators/skip-log-fields.decorator';
-import { Repository } from 'typeorm';
 
 @Injectable()
 export class LogInterceptor implements NestInterceptor {
