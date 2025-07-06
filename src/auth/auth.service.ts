@@ -85,7 +85,7 @@ export class AuthService {
   }
 
   async validateUser(id: string) {
-    const user = this.userRepository.findOne({ where: { id } });
+    const user = await this.userRepository.findOne({ where: { id } });
 
     if (!user) {
       throw new UnauthorizedException('No autorizado');
