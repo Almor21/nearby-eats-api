@@ -1,0 +1,20 @@
+# Node modules (deberían instalarse dentro del contenedor)
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Salida de compilación
+dist
+build
+
+# Archivos de configuración de tu entorno de desarrollo
+.vscode
+.idea
+
+# Git
+.git
+.gitignore
+
+# Otros archivos temporales
+.DS_Store
+*.log
