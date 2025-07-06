@@ -3,12 +3,13 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
-import { APP_GUARD, APP_PIPE } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { JwtStrategy } from './auth/strategies/jwt.strategy';
 import { JwtGuard } from './auth/guards/jwt/jwt.guard';
 import { IntegratorModule } from './integrator/integrator.module';
 import { PlacesModule } from './places/places.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { LogInterceptor } from './interceptors/log-interceptor.interceptor';
 
 @Module({
   imports: [
@@ -24,6 +25,10 @@ import { ScheduleModule } from '@nestjs/schedule';
   ],
   providers: [
     JwtStrategy,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LogInterceptor,
+    },
     {
       provide: APP_GUARD,
       useClass: JwtGuard,
