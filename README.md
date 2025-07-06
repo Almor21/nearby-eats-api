@@ -7,7 +7,7 @@ API REST desarrollada con **NestJS** y montada con **Docker**, cuyo objetivo pri
 - Registro de usuarios
 - Login con autenticación JWT
 - Logout de usuarios
-- Consulta de restaurantes cercanos a una ciudad o coordenadas (requiere autenticación)
+- Consulta de restaurantes cercanos a una ciudad o coordenadas
 - Registro histórico de todas las acciones de los usuarios (signUp, login, logout, consulta de restaurantes)
 - Endpoint para consultar el historial de acciones de un usuario
 - Dockerizado completamente con `docker-compose`
