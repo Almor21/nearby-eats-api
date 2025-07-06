@@ -4,8 +4,8 @@ import { formatGooglePlaceResponse } from './utils/formatGooglePlaceResponse';
 
 @Injectable()
 export class IntegratorService {
-  async getNearbyRestaurants(latitude: number, longitude: number) {
-    const data = await getNearbyRestaurants(latitude, longitude);
+  async getNearbyRestaurants(latitude: number, longitude: number, radius?: number, limit?: number) {
+    const data = await getNearbyRestaurants(latitude, longitude, radius, limit);
 
     return formatGooglePlaceResponse(data.places);
   }

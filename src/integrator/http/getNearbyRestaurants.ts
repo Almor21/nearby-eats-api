@@ -1,16 +1,18 @@
 import axios from 'axios';
-import { integratorConfig } from 'src/integrator/config/integratorConfig';
 import { PlaceApiResponse } from '../interfaces/placesResponse.interface';
+import { integratorConfig } from '../config/integratorConfig';
 
 export const getNearbyRestaurants = async (
   latitude: number,
   longitude: number,
+  radius?: number,
+  limit?: number,
 ) => {
   const response = await axios.post<PlaceApiResponse>(
     integratorConfig.googlePlacesApiUrl,
     {
-      includedTypes: integratorConfig.includedTypes,
-      maxResultCount: integratorConfig.maxResultCount,
+      includedTypes: radius || integratorConfig.includedTypes,
+      maxResultCount: limit || integratorConfig.maxResultCount,
       locationRestriction: {
         circle: {
           center: {
