@@ -7,6 +7,7 @@ import {
 import { Reflector } from '@nestjs/core';
 import { InjectRepository } from '@nestjs/typeorm';
 import { tap } from 'rxjs';
+import { LogsService } from 'src/applogs/logs.service';
 import { Log } from 'src/database/entities/log.entity';
 import { NO_LOG_KEY } from 'src/decorators/nolog.decorator';
 import { SKIP_LOG_FIELDS } from 'src/decorators/skip-log-fields.decorator';
@@ -15,9 +16,8 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class LogInterceptor implements NestInterceptor {
   constructor(
-    @InjectRepository(Log)
-    private readonly logRepository: Repository<Log>,
     private readonly reflector: Reflector,
+    private readonly logService: LogsService,
   ) {}
 
   intercept(context: ExecutionContext, next: CallHandler) {
@@ -61,9 +61,7 @@ export class LogInterceptor implements NestInterceptor {
           statusCode: response.statusCode,
         };
 
-        const log = this.logRepository.create(logData);
-
-        this.logRepository.save(log);
+        return this.logService.createLog(logData);
       }),
     );
   }
