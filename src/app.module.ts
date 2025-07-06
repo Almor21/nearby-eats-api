@@ -10,6 +10,7 @@ import { JwtStrategy } from './auth/strategies/jwt.strategy';
 import { JwtGuard } from './auth/guards/jwt/jwt.guard';
 import { IntegratorModule } from './integrator/integrator.module';
 import { PlacesModule } from './places/places.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { PlacesModule } from './places/places.module';
     DatabaseModule,
     IntegratorModule,
     PlacesModule,
+    ScheduleModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,
     }),
