@@ -12,15 +12,20 @@ import { ConfigService } from '@nestjs/config';
 import { UsersService } from 'src/users/users.service';
 import { SignUpDto } from './dtos/signup.dto';
 import { JwtService } from '@nestjs/jwt';
+import { JwtBlacklist } from 'src/database/entities/jwt-blacklist.entity';
+import { TokenService } from './token/token.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    @InjectRepository(JwtBlacklist)
+    private readonly jwtBlacklist: Repository<JwtBlacklist>,
     private readonly configService: ConfigService,
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
+    private readonly tokenService: TokenService,
   ) {}
 
   async login({ username, password }: LoginDto) {
@@ -36,15 +41,23 @@ export class AuthService {
       throw new BadRequestException('Credenciales inválidas');
     }
 
-    const token = this.jwtService.sign(
-      { id: user.id },
-      {
-        secret: this.configService.get('JWT_SECRET', ''),
-        expiresIn: this.configService.get('JWT_EXPIRATION', '1h'),
-      },
-    );
+    const token = await this.tokenService.generateToken(user);
 
     return { token };
+  }
+
+  async logout(token: string) {
+    const { jti, exp } = this.jwtService.verify(token, {
+      secret: this.configService.get('JWT_SECRET', ''),
+    });
+
+    const revokedToken = this.jwtBlacklist.create({
+      id: jti,
+      token,
+      expiresAt: new Date(exp * 1000),
+    });
+
+    await this.jwtBlacklist.save(revokedToken);
   }
 
   async signUp(data: SignUpDto) {
