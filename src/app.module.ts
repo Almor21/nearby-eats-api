@@ -5,7 +5,9 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
-import { APP_PIPE } from '@nestjs/core';
+import { APP_GUARD, APP_PIPE } from '@nestjs/core';
+import { JwtStrategy } from './auth/strategies/jwt.strategy';
+import { JwtGuard } from './auth/guards/jwt/jwt.guard';
 
 @Module({
   imports: [
@@ -19,6 +21,11 @@ import { APP_PIPE } from '@nestjs/core';
   controllers: [AppController],
   providers: [
     AppService,
+    JwtStrategy,
+    {
+      provide: APP_GUARD,
+      useClass: JwtGuard,
+    },
     {
       provide: APP_PIPE,
       useValue: new ValidationPipe({
