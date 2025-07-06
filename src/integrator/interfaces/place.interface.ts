@@ -12,7 +12,3 @@ export interface Place {
   };
   shortFormattedAddress: string;
 }
-
-export interface PlaceApiResponse {
-  places: Place[];
-}

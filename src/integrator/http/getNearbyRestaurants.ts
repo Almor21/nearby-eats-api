@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { integratorConfig } from 'src/integrator/config/integratorConfig';
-import { PlaceApiResponse } from '../interfaces/place.interface';
+import { PlaceApiResponse } from '../interfaces/placesResponse.interface';
 
 export const getNearbyRestaurants = async (
   latitude: number,
