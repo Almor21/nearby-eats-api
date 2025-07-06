@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { LoginDto } from './dtos/login.dto';
 import { SignUpDto } from './dtos/signup.dto';
 import { Public } from 'src/decorators/public.decorator';
+import { Token } from 'src/decorators/token.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -12,6 +13,11 @@ export class AuthController {
   @Post('login')
   async login(@Body() data: LoginDto) {
     return await this.authService.login(data);
+  }
+
+  @Post('logout')
+  async logout(@Token() token: string) {
+    return await this.authService.logout(token);
   }
 
   @Public()
