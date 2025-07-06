@@ -21,7 +21,7 @@ export class AuthService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     @InjectRepository(JwtBlacklist)
-    private readonly jwtBlacklist: Repository<JwtBlacklist>,
+    private readonly jwtBlacklistRepository: Repository<JwtBlacklist>,
     private readonly configService: ConfigService,
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
@@ -51,13 +51,13 @@ export class AuthService {
       secret: this.configService.get('JWT_SECRET', ''),
     });
 
-    const revokedToken = this.jwtBlacklist.create({
+    const revokedToken = this.jwtBlacklistRepository.create({
       id: jti,
       token,
       expiresAt: new Date(exp * 1000),
     });
 
-    await this.jwtBlacklist.save(revokedToken);
+    await this.jwtBlacklistRepository.save(revokedToken);
   }
 
   async signUp(data: SignUpDto) {

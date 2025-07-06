@@ -14,7 +14,7 @@ export class TokenService {
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
     @InjectRepository(JwtBlacklist)
-    private readonly jwtBlacklist: Repository<JwtBlacklist>,
+    private readonly jwtBlacklistRepository: Repository<JwtBlacklist>,
   ) {}
 
   async generateToken(user: User) {
@@ -31,7 +31,7 @@ export class TokenService {
   }
 
   async verifyTokenBlackList(jti: string) {
-    const revokedToken = await this.jwtBlacklist.findOne({
+    const revokedToken = await this.jwtBlacklistRepository.findOne({
       where: { id: jti },
     });
 
