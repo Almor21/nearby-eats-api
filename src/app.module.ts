@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { JwtStrategy } from './auth/strategies/jwt.strategy';
 import { JwtGuard } from './auth/guards/jwt/jwt.guard';
+import { IntegratorModule } from './integrator/integrator.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { JwtGuard } from './auth/guards/jwt/jwt.guard';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    IntegratorModule,
   ],
   controllers: [AppController],
   providers: [
