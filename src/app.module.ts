@@ -16,11 +16,11 @@ import { PlacesModule } from './places/places.module';
     UsersModule,
     AuthModule,
     DatabaseModule,
+    IntegratorModule,
+    PlacesModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    IntegratorModule,
-    PlacesModule,
   ],
   controllers: [AppController],
   providers: [
