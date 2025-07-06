@@ -9,6 +9,7 @@ import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { JwtStrategy } from './auth/strategies/jwt.strategy';
 import { JwtGuard } from './auth/guards/jwt/jwt.guard';
 import { IntegratorModule } from './integrator/integrator.module';
+import { PlacesModule } from './places/places.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { IntegratorModule } from './integrator/integrator.module';
       isGlobal: true,
     }),
     IntegratorModule,
+    PlacesModule,
   ],
   controllers: [AppController],
   providers: [
