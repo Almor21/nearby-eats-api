@@ -1,6 +1,4 @@
 import { Module, ValidationPipe } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { DatabaseModule } from './database/database.module';
@@ -24,9 +22,7 @@ import { ScheduleModule } from '@nestjs/schedule';
       isGlobal: true,
     }),
   ],
-  controllers: [AppController],
   providers: [
-    AppService,
     JwtStrategy,
     {
       provide: APP_GUARD,
