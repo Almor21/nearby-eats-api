@@ -12,6 +12,25 @@ API REST desarrollada con **NestJS** y montada con **Docker**, cuyo objetivo pri
 - Endpoint para consultar el historial de acciones de un usuario
 - Dockerizado completamente con `docker-compose`
 
+## ⚙️ Configuración del archivo `.env`
+
+Para que el proyecto funcione correctamente, es necesario configurar las siguientes variables de entorno. Puedes guiarte con el archivo `.env.example` incluido en el repositorio:
+
+```env
+DB_HOST=
+DB_PORT=
+DB_USERNAME=
+DB_PASSWORD=
+DB_NAME=
+BCRYPT_SALT_ROUNDS=
+JWT_SECRET=
+JWT_EXPIRATION=
+GOOGLE_PLACES_API_KEY=
+GOOGLE_PLACES_API_URL=
+THROTTLE_TTL=
+THROTTLE_LIMIT=
+```
+
 ## 🐳 Instalación con Docker
 
 Asegúrate de tener Docker y Docker Compose instalados. Luego, simplemente ejecuta:
