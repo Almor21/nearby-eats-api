@@ -66,6 +66,27 @@ Esto levantará:
 | POST   | `api/auth/login`  | Inicio de sesión    |
 | POST   | `api/auth/logout` | Cierre de sesión    |
 
+#### Ejemplo de body para signup
+
+```json
+{
+  "firstName": "Nombre",
+  "lastName": "Apellido",
+  "email": "example@gmail.com",
+  "username": "usuario1",
+  "password": "123456"
+}
+```
+
+#### Ejemplo de body para login
+
+```json
+{
+  "username": "usuario1",
+  "password": "123456"
+}
+```
+
 ### 📍 Restaurantes
 
 | Método | Endpoint              | Descripción                                              |
@@ -79,7 +100,7 @@ Esto levantará:
 
 | Método | Endpoint   | Descripción                              |
 | ------ | ---------- | ---------------------------------------- |
-| GET    | `api/logs` | Ver el historial de acciones de los usuarios |
+| GET    | `api/logs/me` | Ver el historial de acciones del usuario |
 
 ## 🧪 Pruebas
 
